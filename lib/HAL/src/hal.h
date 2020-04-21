@@ -14,6 +14,7 @@ namespace hal{
     class slot{
         public:
             virtual void trigger(T value); //We get treiggered from the signal. It has the value value
+            virtual T read(void);
     };
 
     //A signal can update the slot it is connected to
@@ -21,10 +22,10 @@ namespace hal{
     class signal{        
         public:
             slot<T>* a_slot;
-            void update(){a_slot->trigger(read());} //We trigger the slot with our update
+            virtual void update() = 0 ;//{a_slot->trigger(read());} //We trigger the slot with our update
 
-        private: 
-            virtual T read(void);
+        protected: 
+            
     };
     
     //We convert from T1 into T2
