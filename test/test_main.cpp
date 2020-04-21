@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <../lib/HAL/test/dio_test.h>
+#include <../lib/HAL/test/dio_cons_test.h>
 
 void setup() {
     // NOTE!!! Wait for >2 secs
@@ -24,6 +25,8 @@ void loop() {
         RUN_TEST(hal::digital::test_output_trigger_toggle);
         delay(50);
         RUN_TEST(hal::digital::test_input);
+        delay(50);
+        RUN_TEST(hal::digital::test_connector_inverter);
         i++;
     }
     else if (i == 1) {

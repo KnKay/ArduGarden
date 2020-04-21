@@ -3,6 +3,7 @@
 #include <digital_pin.h>
 #include <pwm_pin.h>
 #include <connectors/basic_converter.h>
+#include <connectors/basic_digital.h>
 
 void setup() {
   // put your setup code here, to run once:

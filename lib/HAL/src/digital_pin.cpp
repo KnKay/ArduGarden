@@ -28,7 +28,7 @@ namespace hal { namespace digital {
         trigger(!read());
     }
      
-    bool digital_input::read(){       
+    bool digital_input::sig_read(){           
         return (digitalRead(pin) == HIGH); 
     }
 

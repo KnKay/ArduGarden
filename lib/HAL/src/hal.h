@@ -22,20 +22,24 @@ namespace hal{
     class signal{        
         public:
             slot<T>* a_slot;
-            virtual void update() = 0 ;//{a_slot->trigger(read());} //We trigger the slot with our update
+            virtual void update() {a_slot->trigger(sig_read());} //We trigger the slot with our update
 
         protected: 
+            virtual T sig_read();// = 0;
             
     };
     
     //We convert from T1 into T2
     template<class T1, class T2>
-    class converter: public signal<T2>, public slot<T1>{
+    class converter: public slot<T1>{
         
         public:
             converter (signal<T1>* a_source, slot<T2>* a_target){
                 a_source->a_slot = this;                
-            };            
+                a_slot = a_target;
+            };
+        protected:
+            slot<T2>* a_slot;   
         
     };
 }

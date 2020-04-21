@@ -12,14 +12,14 @@ namespace hal { namespace digital {
     
     class digital_input: public hal::signal<bool>{
         public:
-            virtual void update(){a_slot->trigger(read());}
+            virtual void update(){a_slot->trigger(sig_read());}
             digital_input(byte a_pin){
                 //Need to adopt once we differ in framework
                 pinMode(a_pin, INPUT);
                 pin = a_pin;
             }  
-        public:
-            virtual bool read(void);
+        protected:
+            virtual bool sig_read(void) override;
             byte pin;
     };
 
