@@ -2,6 +2,7 @@
 #include <unity.h>
 #include <../lib/HAL/test/dio_test.h>
 #include <../lib/HAL/test/dio_cons_test.h>
+#include <../lib/HAL/test/basic_converter_test.h>
 
 void setup() {
     // NOTE!!! Wait for >2 secs
@@ -9,7 +10,7 @@ void setup() {
     delay(2000);
 
     UNITY_BEGIN();    // IMPORTANT LINE!
-    //RUN_TEST(hal::test_led_state_high);
+  //  RUN_TEST(hal::test_led_state_high);
 
     //pinMode(LED_BUILTIN, OUTPUT);
 }
@@ -27,6 +28,8 @@ void loop() {
         RUN_TEST(hal::digital::test_input);
         delay(50);
         RUN_TEST(hal::digital::test_connector_inverter);
+        delay(50);
+        RUN_TEST(hal::connectors::test_basic_converter::schmidt_trigger);
         i++;
     }
     else if (i == 1) {

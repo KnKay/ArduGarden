@@ -12,7 +12,8 @@ namespace hal {
             dio_helper::digital_input * in = new dio_helper::digital_input(0);
             in->state = false;
             out->state = false;       
-            hal::connectors::basic_digital::inverter*dut = new hal::connectors::basic_digital::inverter(in, out);            
+            //hal::connectors::basic_digital::inverter*dut = 
+            new hal::connectors::basic_digital::inverter(in, out);            
             in->update();
             TEST_ASSERT_EQUAL(true, out->state);
         }

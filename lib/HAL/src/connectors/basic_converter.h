@@ -11,12 +11,14 @@
 namespace hal {namespace connectors {
     
     namespace basic_converter{
-        template<class T1,class T2>
-        class schmidt_trigger:public converter<float, bool>
+        class schmidt_trigger:public converter<int, bool>
         {
             public:
-                schmidt_trigger(T1* a_source,slot<T2>* a_target, int on, int off = 0):on(on), off(off), converter(a_source, a_target){};                                
-                virtual void trigger(T1 value)override
+                schmidt_trigger(signal<int>* a_source, slot<bool>* a_target, int a_on, int a_off = 0):on(a_on), off(a_off), converter(a_source, a_target){
+                     if (a_off == 0)
+                        off=a_on; //We have no hysteresis
+                };                                
+                virtual void trigger(int value)override
                 {
                     if(value > on)
                     {
@@ -27,6 +29,7 @@ namespace hal {namespace connectors {
                         a_slot->trigger(false);
                     }
                 };
+                virtual int read() override {return 0;} //Das noch nicht so elegant
             private:
                 int on, off;
                 
