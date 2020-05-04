@@ -19,6 +19,26 @@ namespace hal {
             in->state = 40;
             in->update();
             TEST_ASSERT_EQUAL(false, out->state);
+            //We connect a new trigger. This should prevent the old from getting used
+            new hal::connectors::basic_converter::schmidt_trigger(in, out, 50, 40);            
+            TEST_ASSERT_EQUAL(false, out->state);
+            in->state = 55;
+            in->update();
+            TEST_ASSERT_EQUAL(true, out->state);
+            in->state = 45;
+            in->update();
+            TEST_ASSERT_EQUAL(true, out->state);
+            in->state = 35;
+            in->update();
+            TEST_ASSERT_EQUAL(false, out->state);
+            
+            in->state = 45;
+            in->update();
+            TEST_ASSERT_EQUAL(false, out->state);
+            in->state = 55;
+            in->update();
+            TEST_ASSERT_EQUAL(true, out->state);
+
         }
     }}
 }

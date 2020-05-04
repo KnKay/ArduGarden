@@ -1,0 +1,25 @@
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  tags:
+  - arduino
+  script:
+  - platformio test --test-port /dev/ttyUSB0
+  only: 
+  - merge_requests
+
+build:
+  stage: build
+  script:
+  - platformio run
+  #artifacts:
+  #  paths:
+  #    - .pio/build/pro16MHzatmega328/firmware.elf
+  #    - .pio/build/pro16MHzatmega328/firmware.hex
+  #  expire_in: 1 week
+  only:
+  - merge_requests
+  - master
