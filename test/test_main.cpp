@@ -30,6 +30,10 @@ void loop() {
         RUN_TEST(hal::digital::test_connector_inverter);
         delay(50);
         RUN_TEST(hal::connectors::test_basic_converter::schmidt_trigger);
+        delay(50);
+        RUN_TEST(hal::digital::test_connector_y);
+        delay(50);
+        RUN_TEST(hal::value::test_connector_y);
         i++;
     }
     else if (i == 1) {

@@ -31,7 +31,7 @@ namespace hal {
             protected: 
                 int pin;
         }; //End digital outpu
-
+    
         class int_input: public hal::signal<int> {
              public:
                 virtual void update(){                
@@ -42,6 +42,29 @@ namespace hal {
             protected:
                 virtual int sig_read(void) override {return state;};                
         }; //End byte input
+
+            class value_input: public hal::signal<int>{
+                public:
+                    virtual void update(){a_slot->trigger(sig_read());}
+                    value_input(byte a_pin){
+                        //Need to adopt once we differ in framework
+                        pinMode(a_pin, INPUT);
+                        pin = a_pin;
+                    }  
+                protected:
+                    virtual int sig_read(void) override;
+                    byte pin;
+            };
+
+            class value_output: public hal::slot<int>{
+                public:
+                    value_output(int pin);
+                    void toggle(void);
+                    virtual int read() override;
+                    virtual void trigger(int) override;
+                protected: 
+                    int pin;
+            };
     }
 
 }

@@ -31,17 +31,36 @@ namespace hal{
     
     //We convert from T1 into T2
     template<class T1, class T2>
-    class converter: public slot<T1>{
-        
+    class converter: public slot<T1>{        
         public:
             converter (signal<T1>* a_source, slot<T2>* a_target){
                 a_source->a_slot = this;                
                 a_slot = a_target;
             };
         protected:
-            slot<T2>* a_slot;   
-        
-    };
+            slot<T2>* a_slot;           
+    }; //end converter
+
+    //We split one signal and publish it to 2 slots. 
+    template<class T1>
+    class splitter: public slot<T1>{
+        public:
+            splitter(signal<T1>* a_source, slot<T1>* a_target, slot<T1>* b_target):target_1(a_target), target_2(b_target)
+            {
+                a_source->a_slot = this; 
+            }
+            virtual void trigger(T1 value)override{
+                target_1->trigger(value);
+                target_2->trigger(value);
+            }
+
+        private:
+            slot<T1>* target_1;
+            slot<T1>* target_2;
+    }; //End splitter
+    
+
+
 }
 
 

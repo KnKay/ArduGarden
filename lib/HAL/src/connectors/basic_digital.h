@@ -19,7 +19,9 @@ namespace hal {namespace connectors {
                 };
                 virtual bool read() override {return false;}            
         }; //end inverter
-    }
+        
+
+    }//end namespace 
 }}
 
 #endif
