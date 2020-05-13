@@ -22,9 +22,8 @@ namespace hal{
     template<class T>
     class stateless_out_pin: public hal::signal<T> {
         public:                        
-            virtual void update(){                               
-              //  this->a_slot->trigger(state);
-            }
+            virtual void update(){}
+            virtual void update(T value){this->a_slot->trigger(value);}
             //T state = 0;
         protected:
             virtual int sig_read(void) override {return 0;};                

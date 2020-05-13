@@ -38,6 +38,8 @@ void loop() {
         RUN_TEST(hal::value::test_connector_y);
         delay(50);
         RUN_TEST(hal::classpin_test);
+        delay(50);
+        RUN_TEST(hal::stateless_classpin_test);
         i++;
     }
     else if (i == 1) {
