@@ -10,6 +10,7 @@ test:
   - platformio test --test-port /dev/ttyUSB0
   only: 
   - merge_requests
+  - master
 
 build:
   stage: build
@@ -20,6 +21,6 @@ build:
   #    - .pio/build/pro16MHzatmega328/firmware.elf
   #    - .pio/build/pro16MHzatmega328/firmware.hex
   #  expire_in: 1 week
-  only:
-  - merge_requests
-  - master
+  #only:
+  #- merge_requests
+  #- master
