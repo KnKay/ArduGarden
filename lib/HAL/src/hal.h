@@ -8,7 +8,12 @@ any thing is getting too big an the ESP shout replace the arduino itself.
 */
 
 namespace hal{
-    
+
+    class updateable{
+        public: 
+            virtual void update() = 0;
+    }; 
+
     //A slot can be informad about the update of a signal
     template <class T>
     class slot{
@@ -28,6 +33,9 @@ namespace hal{
             virtual T sig_read();// = 0;
             
     };
+
+    //We know we need something raising multiple signals.
+    class multi_signal: public updateable{};
     
     //We convert from T1 into T2
     template<class T1, class T2>

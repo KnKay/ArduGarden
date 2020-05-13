@@ -56,15 +56,6 @@ namespace hal {
                     byte pin;
             };
 
-            class value_output: public hal::slot<int>{
-                public:
-                    value_output(int pin);
-                    void toggle(void);
-                    virtual int read() override;
-                    virtual void trigger(int) override;
-                protected: 
-                    int pin;
-            };
     }
 
 }
