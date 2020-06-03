@@ -5,6 +5,7 @@
 #include <../lib/HAL/test/dio_cons_test.h>
 #include <../lib/HAL/test/basic_converter_test.h>
 #include <../lib/HAL/test/class_pin_test.h>
+#include <../lib/sensors/test/DHT_sensor_test.h>
 
 void setup() {
     // NOTE!!! Wait for >2 secs
@@ -40,6 +41,8 @@ void loop() {
         RUN_TEST(hal::classpin_test);
         delay(50);
         RUN_TEST(hal::stateless_classpin_test);
+        delay(50);
+        RUN_TEST(sensors_test::test_dht);
         i++;
     }
     else if (i == 1) {
