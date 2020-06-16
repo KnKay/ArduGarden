@@ -25,12 +25,12 @@ namespace hal { namespace value {
 
     class value_output: public hal::slot<int>{
         public:
-            value_output(int a_pin){pin = a_pin;};
+            value_output(byte a_pin){pin = a_pin;};
             void toggle(void);
             virtual int read() override{return state;};
             virtual void trigger(int value) override{state=value;};
         protected: 
-            int pin;
+            byte pin;
             int state;
     };
 
