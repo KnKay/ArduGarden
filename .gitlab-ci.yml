@@ -2,9 +2,6 @@ stages:
   - test
   - build
 
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-
 .ssh: &ssh
   before_script:
     - eval $(ssh-agent -s)
@@ -32,12 +29,7 @@ build:
   <<: *ssh 
   script:
   - platformio run
-  before_script:
-  - mkdir -p ~/.ssh
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-  - echo -e "$SSH_DEPLOY_KEY" > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - platformio run
+  
   #artifacts:
   #  paths:
   #    - .pio/build/pro16MHzatmega328/firmware.elf
