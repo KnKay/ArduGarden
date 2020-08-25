@@ -5,7 +5,7 @@ stages:
 .ssh: &ssh
   before_script:
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY" 
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - git submodule update --init --recursive
