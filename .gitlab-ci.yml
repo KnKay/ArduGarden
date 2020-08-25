@@ -2,6 +2,9 @@ stages:
   - test
   - build
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 test:
   stage: test
   tags:
