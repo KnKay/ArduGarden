@@ -11,6 +11,13 @@
 namespace hal {namespace connectors {
     
     namespace basic_connector{        
+        /*
+        The need for those connectors is low at the moment. 
+        This is only needed if one input need to trigger multiple outputs.
+        This can be the case, is we have some logging. 
+
+        If there are multiple sources, they can simple connect to one output
+        */
         class digital_splitter: public hal::splitter<bool>{
             public:
                 digital_splitter(signal<bool>* a_source, slot<bool>* a_target, slot<bool>* b_target):splitter(a_source, a_target, b_target){};
