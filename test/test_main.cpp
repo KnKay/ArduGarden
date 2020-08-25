@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <unity.h>
 
-#include <../lib/HAL/test/dio_test.h>
-#include <../lib/HAL/test/dio_cons_test.h>
-#include <../lib/HAL/test/basic_converter_test.h>
-#include <../lib/HAL/test/class_pin_test.h>
+#include <../lib/arduinohal/test/dio_test.h>
+#include <../lib/arduinohal/test/dio_cons_test.h>
+#include <../lib/arduinohal/test/basic_converter_test.h>
+#include <../lib/arduinohal/test/class_pin_test.h>
 #include <../lib/sensors/test/DHT_sensor_test.h>
 
 void setup() {

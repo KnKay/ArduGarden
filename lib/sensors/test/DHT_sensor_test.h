@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <unity.h>
 #include <DHT_sensor.h>
-#include "../lib/HAL/src/value_pin.h"
+#include "../lib/arduinohal/src/value_pin.h"
 
 namespace sensors_test {
     int dht_pin = 9; 
