@@ -2,21 +2,14 @@ stages:
   - test
   - build
 
-.ssh: &ssh
-  before_script:
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh git@gitlab.com
-    - git submodule update --init --recursive
-
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
 
 test:
   stage: test
   tags:
   # - arduino
-  <<: *ssh 
+
   script:
 
   
@@ -28,7 +21,6 @@ test:
 
 build:
   stage: build
-  <<: *ssh 
   script:
   - platformio run
   
