@@ -30,7 +30,7 @@ namespace sensors_test {
         //test if the temp is plausible
         TEST_ASSERT_TRUE(temp->read()<40);
         TEST_ASSERT_TRUE(temp->read()>10);
-        TEST_ASSERT_TRUE(hum->read()<80);
+        TEST_ASSERT_TRUE(hum->read()<90);
         TEST_ASSERT_TRUE(hum->read()>50);
 
     }
