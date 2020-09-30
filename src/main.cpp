@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include  <config.h>
+#include <automated.h>
 
 void setup() {
   // put your setup code here, to run once:
