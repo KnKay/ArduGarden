@@ -13,14 +13,7 @@
 hal::signal_base *signals[6];
 
 //define slots
-hal::digital::digital_output out = hal::digital::digital_output(LED_BUILTIN);
-
-
-//We connect what we defined! 
-void connect(void){
-
-}   
-
+hal::digital::digital_output outi = hal::digital::digital_output(LED_BUILTIN);
 
 
 #endif
