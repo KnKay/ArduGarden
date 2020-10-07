@@ -10,10 +10,10 @@
 #include <connectors/basic_connector.h>
 
 //define signals
-hal::signal_base *signals[6];
+extern hal::signal_base *signals[6];
 
 //define slots
-hal::digital::digital_output outi = hal::digital::digital_output(LED_BUILTIN);
+extern hal::digital::digital_output heartbeat = hal::digital::digital_output(LED_BUILTIN);
 
 
 #endif
