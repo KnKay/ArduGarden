@@ -1,6 +1,7 @@
 #ifndef AUTOMATED_H
 #define AUTOMATED_H
 #include <Arduino.h>
+#include <config.h>
 
 namespace automated{
     void OnTimer( void );

@@ -2,6 +2,7 @@
     String automated::inputString = "";         // a String to hold incoming data
     bool automated::stringComplete = false;
 
+
 //On Timer will be called... On Timer...
 /*    
     - We need to trigger all SIGNALS! -> This will start what ever need to be done on the slots
@@ -14,6 +15,7 @@ void automated::OnTimer(){
         signals[i]->update();
     }
     */
+
 }
 
 

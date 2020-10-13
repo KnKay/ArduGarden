@@ -3,6 +3,7 @@
 
 #include <automated.h>
 
+#include <config.h>
 
 void setup() {
   // initialize serial:
@@ -18,7 +19,7 @@ void loop() {
     // clear the string:
     automated::inputString = "";
     automated::stringComplete = false;
-    
+
   }
 }
 

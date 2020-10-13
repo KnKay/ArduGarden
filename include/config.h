@@ -13,7 +13,12 @@
 extern hal::signal_base *signals[6];
 
 //define slots
-extern hal::digital::digital_output heartbeat = hal::digital::digital_output(LED_BUILTIN);
+extern hal::digital::digital_output heartbeat;
+extern hal::slot_base *slots[6];
 
+//We need to set the vars. This need to be in an internal, to avoid multiple declaratrion of messages! 
+inline void set_vars(void){
+    hal::digital::digital_output heartbeat = hal::digital::digital_output(LED_BUILTIN);
+}
 
 #endif
