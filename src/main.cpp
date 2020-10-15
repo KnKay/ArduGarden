@@ -3,13 +3,13 @@
 
 #include <automated.h>
 
-#include <config.h>
 
 void setup() {
   // initialize serial:
   Serial.begin(9600);
   // reserve 200 bytes for the inputString:
   automated::inputString.reserve(200);
+  init_config();
 }
 
 void loop() {
@@ -21,5 +21,8 @@ void loop() {
     automated::stringComplete = false;
 
   }
+  hal::digital::digital_output *heart;
+  heart = slots[0];
+  heart->trigger(100);
 }
 
