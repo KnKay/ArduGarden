@@ -11,12 +11,12 @@ bool automated::manual_mode = false;
 */
 void automated::OnTimer(){
     //Signal triggering
-    /*
-    unsigned int signal_count  = sizeof(signals)/sizeof(signals[0]);
+/*    
+    unsigned int signal_count  = sizeof(config::signals)/sizeof(config::signals[0]);
     for(int i = 0; i < signal_count; i++) {
-        signals[i]->update();
+        config::signals[i]->update();
     }
-    */
+*/    
 
 }
 
@@ -43,8 +43,7 @@ void serialEvent() {
         //We explode the string
 
         
-        //sscanf sollte hier genutzt werden
-        
+        //sscanf sollte hier genutzt werden        
       }
       if (automated::inputString.startsWith("get")){
         //we start on printing out what we know!

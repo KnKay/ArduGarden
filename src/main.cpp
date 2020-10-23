@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(9600);
   // reserve 200 bytes for the inputString:
   automated::inputString.reserve(200);
-  init_config();
+  config::init();
 }
 
 void loop() {
@@ -23,7 +23,11 @@ void loop() {
 
   }
   hal::digital::digital_output *heart;
-  heart = slots[0];
+  heart = config::slots[0];
   heart->trigger(100);
+  delay(500);
+  heart = config::get_hal("test");
+  heart->trigger(0);
+   delay(500);
 }
 
