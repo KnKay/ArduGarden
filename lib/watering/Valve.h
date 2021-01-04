@@ -14,7 +14,7 @@ namespace Watering{
             Valve(byte a_pin): hal::digital::digital_output(a_pin){};
             virtual void trigger(bool) override;
         protected:
-            unsigned long last_on = 0-VALVE_THR;     
+            long last_on = -1*VALVE_THR; 
     };
 } // Watering
 
