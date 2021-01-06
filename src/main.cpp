@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include  <config.h>
 #include <WateringController.h>
-
+#include <Connector.h>
 
 bool hal::manual = false; 
 Watering::Controller *Controller; 
@@ -12,6 +12,7 @@ byte ip[] = {192, 168, 1, 201};
 IPAddress dns(192, 168, 1, 1);
 EthernetClient net; 
 const char MQTT_server[] = "garden-lc.fritz.box";
+const char location[] = "/Beet1";
 
 void setup() {
   Serial.begin(9600);

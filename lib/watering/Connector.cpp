@@ -1,14 +1,13 @@
-#include <Reporter.h>
+#include <Connector.h>
 
-bool Watering::Reporter::begin(const char server[], EthernetClient a_net){
-    net = a_net;
-    
+bool Watering::Connector::begin(const char server[], EthernetClient a_net){
+    net = a_net;   
     client.begin(server, a_net);
     connect();
     return false;
 }
 
-bool Watering::Reporter::connect(){
+bool Watering::Connector::connect(){
     Serial.print("connecting...");
     for (int i = 0; i < 5; i++){
         if (!client.connect("arduino")){
@@ -23,6 +22,6 @@ bool Watering::Reporter::connect(){
     return false;
 }
 
-void Watering::Reporter::report(String topic, String value){
-    client.publish(topic, value);
+void Watering::Connector::report(String topic, String value){
+    client.publish(location+topic, value);
 }

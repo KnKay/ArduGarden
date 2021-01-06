@@ -1,12 +1,14 @@
-#ifndef WATERING_REPORTER_H
-#define WATERING_REPORTER_H
+#ifndef WATERING_Connector_H
+#define WATERING_Connector_H
 
 #include <Arduino.h>
 #include <MQTT.h>
 #include <Ethernet.h>
 
+extern const char location[];
+
 namespace Watering{
-    class Reporter{
+    class Connector{
         public: 
             bool begin(const char server[], EthernetClient a_net);
             void report(String topic, String value);
@@ -16,9 +18,10 @@ namespace Watering{
             EthernetClient net; 
             MQTTClient client;
             bool connect();
+           
 
-    }; //Reporter
+    }; //Connector
 }
 
 
-#endif //WATERING_REPORTER_H
+#endif //WATERING_Connector_H
