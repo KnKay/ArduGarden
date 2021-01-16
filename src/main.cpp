@@ -3,6 +3,10 @@
 #include <WateringController.h>
 
 
+#include <DHT_sensor.h>
+DHT dht(2, DHT22);
+
+
 bool hal::manual = false; 
 Watering::Controller *Controller; 
 
