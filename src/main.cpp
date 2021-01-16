@@ -57,7 +57,7 @@ void setup() {
   Controller->name = location;
 
 
-  myservo.attach(servoPin);
+  myservo.attach(4);
   Serial.println("---- Starting Main ----");
 }
 
