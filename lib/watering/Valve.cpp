@@ -10,8 +10,7 @@ void Watering::Valve::trigger(bool set){
     if (set){
         if (last_on+ VALVE_THR > (now)){   
             return; 
-        }        
-        
+        }       
     }else{
         if (read()){
             last_on = now;
