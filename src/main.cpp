@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include  <config.h>
 #include <WateringController.h>
-
-
+#include <Servo.h>
+Servo myservo;
 #include <DHT_sensor.h>
 DHT dht(2, DHT22);
 
@@ -55,6 +55,9 @@ void setup() {
   connect();
   Controller = new Watering::Controller(A0, 8, 500, 0, &client);
   Controller->name = location;
+
+
+  myservo.attach(servoPin);
   Serial.println("---- Starting Main ----");
 }
 
@@ -75,5 +78,9 @@ void loop() {
     client.publish("/hello", "world");
     Controller->update();  
     float Temperatur = dht.readTemperature();
+    float Humidity = dht.readHumidity();
+    client.publish("/Beet1/Temp", String(Temperatur));
+    client.publish("/Beet1/Temp", String(Humidity));
+    myservo.write(90);
   } 
 }
