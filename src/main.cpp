@@ -74,5 +74,6 @@ void loop() {
     lastMillis = millis();
     client.publish("/hello", "world");
     Controller->update();  
+    float Temperatur = dht.readTemperature();
   } 
 }
