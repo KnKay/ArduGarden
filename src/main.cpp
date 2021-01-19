@@ -7,16 +7,6 @@ Watering::Controller *Controller;
 #include <VentilationController.h>
 Ventilation::VentilationController *Ventilator;
 
-
-#include <Servo.h>
-Servo myservo;
-#include <DHT_sensor.h>
-DHT dht(2, DHT22);
-
-
-
-
-
 #include <Ethernet.h>
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 byte ip[] = {192, 168, 1, 201};
@@ -26,7 +16,6 @@ MQTTClient client;
 
 const char MQTT_server[] = "garden-lc.fritz.box";
 String location = "/Garden/Beet1";
-
 
 void messageReceived(String &topic, String &payload) {
   Serial.println("incoming: " + topic + " - " + payload);
@@ -46,7 +35,7 @@ void connect() {
 
   Serial.println("\nconnected!");
 
-  client.subscribe("/hello");
+  // client.subscribe("/hello");
   client.subscribe("/Garden/Control");
   // client.unsubscribe("/hello");
 }
@@ -61,11 +50,10 @@ void setup() {
   connect();
   Controller = new Watering::Controller(A0, 8, 500, 0, &client);
   Controller->name = location;
-  
-  Ventilator = new Ventilation::VentilationController(&client);
+
+  Ventilator = new Ventilation::VentilationController(2, DHT22, &client);
   Ventilator-> name = location; 
 
-  myservo.attach(4);
   Serial.println("---- Starting Main ----");
 }
 
@@ -83,12 +71,8 @@ void loop() {
   // publish a message roughly every second.
   if (millis() - lastMillis > 1000) {
     lastMillis = millis();
-    client.publish("/hello", "world");
+    // client.publish("/hello", "world");
     Controller->update();  
-    float Temperatur = dht.readTemperature();
-    float Humidity = dht.readHumidity();
-    client.publish("/Beet1/Temp", String(Temperatur));
-    client.publish("/Beet1/Temp", String(Humidity));
-    myservo.write(90);
+    Ventilator->update();
   } 
 }

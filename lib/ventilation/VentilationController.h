@@ -3,6 +3,7 @@
 
 #include <hal.h> 
 #include <MQTT.h>
+#include <DHT_sensor.h>
 
 namespace Ventilation {
     class VentilationController{
@@ -36,14 +37,22 @@ namespace Ventilation {
                     MQTTClient *mqtt;
                     String *name; 
             }; //Temptrigger
-            VentilationController(MQTTClient *mqtt = 0){
+            VentilationController( byte pin, byte type, MQTTClient *mqtt = 0){
+                dht = new dhtsensor::dht_sensor(pin, type);
                 hum = new Ventilation::VentilationController::HumTrigger();
                 hum->mqtt = mqtt;
                 hum->name = &name;
                 temp = new Ventilation::VentilationController::TempTrigger();
                 temp->mqtt = mqtt;
                 temp->name = &name;
+                dht->temperature->a_slot = temp;
+                dht->humidity->a_slot = hum;
+                
             };
+            void update(){
+                dht->update();
+            }
+            dhtsensor::dht_sensor *dht;
             String name;    
             TempTrigger *temp; 
             HumTrigger *hum;
