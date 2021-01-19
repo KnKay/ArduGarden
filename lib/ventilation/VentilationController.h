@@ -6,7 +6,7 @@
 #include <DHT_sensor.h>
 
 namespace Ventilation {
-    class VentilationController{
+    class VentilationController :  public hal::signal_base{
 
         public: 
             class TempTrigger : public hal::slot<int>{
