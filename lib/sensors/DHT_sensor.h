@@ -16,7 +16,7 @@ namespace dhtsensor{
             hal::sensors::temperature * temperature; 
             hal::sensors::humidity * humidity;         
         
-        protected:
+        protected:        
             DHT * sensor = 0; 
 
     }; //END DHT

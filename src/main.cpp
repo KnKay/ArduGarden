@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include  <config.h>
 #include <WateringController.h>
-
-
 bool hal::manual = false; 
 Watering::Controller *Controller; 
 
+#include <VentilationController.h>
+Ventilation::VentilationController *Ventilator;
 
 #include <Ethernet.h>
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
@@ -16,7 +16,6 @@ MQTTClient client;
 
 const char MQTT_server[] = "garden-lc.fritz.box";
 String location = "/Garden/Beet1";
-
 
 void messageReceived(String &topic, String &payload) {
   Serial.println("incoming: " + topic + " - " + payload);
@@ -36,7 +35,7 @@ void connect() {
 
   Serial.println("\nconnected!");
 
-  client.subscribe("/hello");
+  // client.subscribe("/hello");
   client.subscribe("/Garden/Control");
   // client.unsubscribe("/hello");
 }
@@ -51,6 +50,10 @@ void setup() {
   connect();
   Controller = new Watering::Controller(A0, 8, 500, 0, &client);
   Controller->name = location;
+
+  Ventilator = new Ventilation::VentilationController(2, DHT22, &client);
+  Ventilator-> name = location; 
+
   Serial.println("---- Starting Main ----");
 }
 
@@ -68,7 +71,8 @@ void loop() {
   // publish a message roughly every second.
   if (millis() - lastMillis > 1000) {
     lastMillis = millis();
-    client.publish("/hello", "world");
+    // client.publish("/hello", "world");
     Controller->update();  
+    Ventilator->update();
   } 
 }
