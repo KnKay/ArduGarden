@@ -1,14 +1,20 @@
 #include <Arduino.h>
 #include  <config.h>
 #include <WateringController.h>
+bool hal::manual = false; 
+Watering::Controller *Controller; 
+
+#include <VentilationController.h>
+Ventilation::VentilationController *Ventilator;
+
+
 #include <Servo.h>
 Servo myservo;
 #include <DHT_sensor.h>
 DHT dht(2, DHT22);
 
 
-bool hal::manual = false; 
-Watering::Controller *Controller; 
+
 
 
 #include <Ethernet.h>
@@ -55,7 +61,9 @@ void setup() {
   connect();
   Controller = new Watering::Controller(A0, 8, 500, 0, &client);
   Controller->name = location;
-
+  
+  Ventilator = new Ventilation::VentilationController(&client);
+  Ventilator-> name = location; 
 
   myservo.attach(4);
   Serial.println("---- Starting Main ----");
